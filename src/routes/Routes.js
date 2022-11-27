@@ -48,15 +48,15 @@ const router = createBrowserRouter([
                 element: <Signup></Signup>
             },
             {
-                path: '/dashboard/allsellers', // seller
+                path: '/dashboard/allsellers', // admin
                 element: <Signup></Signup>
             },
             {
-                path: '/dashboard/allbuyers', // seller
+                path: '/dashboard/allbuyers', // admin
                 element: <Signup></Signup>
             },
             {
-                path: '/dashboard/reporteditems', // seller
+                path: '/dashboard/reporteditems', // admin
                 element: <Signup></Signup>
             },
 
