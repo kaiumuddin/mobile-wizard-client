@@ -1,12 +1,35 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {useForm} from "react-hook-form";
-import {Link} from "react-router-dom";
+import toast from "react-hot-toast";
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import {AuthContext} from "../../contexts/AuthProvider";
 
 const Login = () => {
 
     const {register, formState: {errors}, handleSubmit} = useForm();
+    const {signIn} = useContext(AuthContext);
+    const [loginError, setLoginError] = useState('');
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
+
+
     const handleLogin = data => {
         console.log(data);
+        setLoginError('');
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setLoginUserEmail(data.email);
+                toast('Login Success');
+            })
+            .catch(error => {
+                console.log(error.message);
+                setLoginError(error.message);
+            });
     };
 
     return (
@@ -46,9 +69,7 @@ const Login = () => {
 
                     <input className="btn btn-accent w-full" value="Login" type="submit" />
                 </form>
-                <p >New to doctors portal? <Link to="/signup" className="text-secondary">Create new account</Link> </p>
-                <div className="divider">OR</div>
-                <button className="uppercase btn btn-outline w-full">Continue with google</button>
+                <p >New to Mobile Wizard? <Link to="/signup" className="text-secondary">Create new account</Link> </p>
             </div>
         </div>
     );

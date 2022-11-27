@@ -1,20 +1,76 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import {useForm} from "react-hook-form";
-import {Link} from "react-router-dom";
+import toast from "react-hot-toast";
+import {Link, useNavigate} from "react-router-dom";
+import {AuthContext} from "../../contexts/AuthProvider";
 
 const Signup = () => {
 
     const {register, formState: {errors}, handleSubmit} = useForm();
+    const {createUser, updateUser, signInWithGoogle} = useContext(AuthContext);
+    const [signUpError, setSignUPError] = useState('');
+    const [createdUserEmail, setCreatedUserEmail] = useState('');
+    const navigate = useNavigate();
 
-    const handleSignup = (data) => {
-        console.log(data);
+    const handleSignUp = (data) => {
+        setSignUPError('');
+        createUser(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast('User Created Successfully.');
+                const userInfo = {
+                    displayName: data.name
+                };
+                updateUser(userInfo)
+                    .then(() => {
+                        saveUser(data.name, data.email, data.role);
+                    })
+                    .catch(err => console.log(err));
+            })
+            .catch(error => {
+                console.log(error);
+                setSignUPError(error.message);
+            });
     };
+
+    // Google Sign In 
+    const handleSigninWithGoogle = () => {
+        signInWithGoogle()
+            .then((result) => {
+                // console.log(result.user);
+                // console.log(result.user.displayName);
+                // console.log(result.user.email);
+                saveUser(result.user.displayName, result.user.email, 'user');
+                toast.success('Google Login Success!');
+                // navigate('/');
+            })
+            .catch(error => toast.error(error.message));
+    };
+
+    const saveUser = (name, email, role) => {
+        const user = {name, email, role};
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setCreatedUserEmail(email);
+            });
+    };
+
+
+
 
     return (
         <div className="h-[800px] flex justify-center items-center" >
             <div className="w-96 p-7  shadow-lg rounded-lg">
                 <h2 className="text-xl text-center" >Sign Up</h2>
-                <form onSubmit={handleSubmit(handleSignup)}>
+                <form onSubmit={handleSubmit(handleSignUp)}>
 
                     <div className="form-control w-full ">
                         <label className="label">
@@ -60,8 +116,19 @@ const Signup = () => {
                         <h2>Your Role ?</h2>
                         <div className="form-control">
                             <label className="label cursor-pointer">
+                                <span className="label-text">User</span>
+                                <input type="radio" name="role" value='user' className="radio checked:bg-blue-500" defaultChecked
+
+                                    {...register("role", {
+                                        required: "Name is required",
+                                    })}
+                                />
+                            </label>
+                        </div>
+                        <div className="form-control">
+                            <label className="label cursor-pointer">
                                 <span className="label-text">Buyer</span>
-                                <input type="radio" name="role" value='buyer' className="radio checked:bg-blue-500" defaultChecked
+                                <input type="radio" name="role" value='buyer' className="radio checked:bg-blue-500"
 
                                     {...register("role", {
                                         required: "Name is required",
@@ -86,7 +153,7 @@ const Signup = () => {
                 </form>
                 <p >Already have an account? <Link to="/login" className="text-secondary">Please Login</Link> </p>
                 <div className="divider">OR</div>
-                <button className="uppercase btn btn-outline w-full">Continue with google</button>
+                <button onClick={handleSigninWithGoogle} className="uppercase btn btn-outline w-full">Continue with google</button>
             </div>
         </div>
     );

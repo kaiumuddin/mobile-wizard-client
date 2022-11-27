@@ -1,3 +1,4 @@
+import DashboardLayout from "../layout/DashboardLayout";
 import Login from "../pages/login/Login";
 import Signup from "../pages/signup/Signup";
 
@@ -25,7 +26,42 @@ const router = createBrowserRouter([
             }
 
         ]
-    }
+    },
+    {
+        path: '/dashboard',
+        element: <DashboardLayout></DashboardLayout>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <Home></Home>
+            },
+            {
+                path: '/dashboard/myorders', // buyers
+                element: <Login></Login>
+            },
+            {
+                path: '/dashboard/addproduct', // seller
+                element: <Signup></Signup>
+            },
+            {
+                path: '/dashboard/myproducts', // seller
+                element: <Signup></Signup>
+            },
+            {
+                path: '/dashboard/allsellers', // seller
+                element: <Signup></Signup>
+            },
+            {
+                path: '/dashboard/allbuyers', // seller
+                element: <Signup></Signup>
+            },
+            {
+                path: '/dashboard/reporteditems', // seller
+                element: <Signup></Signup>
+            },
+
+        ]
+    },
 ]);
 
 export default router;
