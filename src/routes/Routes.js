@@ -1,5 +1,12 @@
 import DashboardLayout from "../layout/DashboardLayout";
+import Blog from "../pages/blog/Blog";
+import AddProduct from "../pages/dashboard/addproduct/AddProduct";
+import Allbuyers from "../pages/dashboard/allbuyers/Allbuyers";
+import Allsellers from "../pages/dashboard/allsellers/Allsellers";
+import Dashboard from "../pages/dashboard/Dashboard";
+import MyProducts from "../pages/dashboard/myproducts/MyProducts";
 import Login from "../pages/login/Login";
+import ErrorPage from "../pages/shared/errorPage/ErrorPage";
 import Signup from "../pages/signup/Signup";
 
 const {createBrowserRouter} = require("react-router-dom");
@@ -11,6 +18,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout></MainLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -23,6 +31,10 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <Signup></Signup>
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             }
 
         ]
@@ -30,35 +42,30 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: <DashboardLayout></DashboardLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/dashboard',
-                element: <Home></Home>
+                element: <Dashboard></Dashboard>
             },
-            {
-                path: '/dashboard/myorders', // buyers
-                element: <Login></Login>
-            },
-            {
-                path: '/dashboard/addproduct', // seller
-                element: <Signup></Signup>
-            },
-            {
-                path: '/dashboard/myproducts', // seller
-                element: <Signup></Signup>
-            },
+
             {
                 path: '/dashboard/allsellers', // admin
-                element: <Signup></Signup>
+                element: <Allsellers></Allsellers>
             },
             {
                 path: '/dashboard/allbuyers', // admin
-                element: <Signup></Signup>
+                element: <Allbuyers></Allbuyers>
             },
             {
-                path: '/dashboard/reporteditems', // admin
-                element: <Signup></Signup>
+                path: '/dashboard/addproduct', // seller
+                element: <AddProduct></AddProduct>
             },
+            {
+                path: '/dashboard/myproducts', // seller
+                element: <MyProducts></MyProducts>
+            },
+
 
         ]
     },
