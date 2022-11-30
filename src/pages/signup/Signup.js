@@ -39,7 +39,7 @@ const Signup = () => {
     const handleSigninWithGoogle = () => {
         signInWithGoogle()
             .then((result) => {
-                saveUser(result.user.displayName, result.user.email, 'user');
+                saveUser(result.user.displayName, result.user.email, 'buyer');
                 toast.success('Google Login Success!');
                 navigate('/');
             })

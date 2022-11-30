@@ -9,6 +9,7 @@ import MyProducts from "../pages/dashboard/myproducts/MyProducts";
 import Login from "../pages/login/Login";
 import ErrorPage from "../pages/shared/errorPage/ErrorPage";
 import Signup from "../pages/signup/Signup";
+import PrivateRoute from "./PrivateRoute";
 
 const {createBrowserRouter} = require("react-router-dom");
 const {default: MainLayout} = require("../layout/MainLayout");
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/category/:id',
-                element: <Category></Category>,
+                element: <PrivateRoute> <Category></Category></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
             },
 

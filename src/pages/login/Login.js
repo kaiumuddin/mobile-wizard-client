@@ -35,7 +35,8 @@ const Login = () => {
         signInWithGoogle()
             .then((result) => {
                 toast.success('Google Login Success!');
-                saveUser(result.user.displayName, result.user.email, 'user');
+                saveUser(result.user.displayName, result.user.email, 'buyer');
+                toast.success('Google Login Success!');
                 navigate('/');
             })
             .catch(error => toast.error(error.message));
