@@ -38,6 +38,7 @@ const AddProduct = () => {
         data.selleremail = user.email;
         data.sellername = user.displayName;
         data.available = true;
+        data.advertised = false;
         console.log(data);
 
         fetch('http://localhost:5000/products', {

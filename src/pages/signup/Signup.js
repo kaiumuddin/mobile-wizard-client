@@ -9,7 +9,6 @@ const Signup = () => {
     const {register, formState: {errors}, handleSubmit} = useForm();
     const {createUser, updateUser, signInWithGoogle} = useContext(AuthContext);
     const [signUpError, setSignUPError] = useState('');
-    const [createdUserEmail, setCreatedUserEmail] = useState('');
     const navigate = useNavigate();
 
     const handleSignUp = (data) => {
@@ -38,12 +37,9 @@ const Signup = () => {
     const handleSigninWithGoogle = () => {
         signInWithGoogle()
             .then((result) => {
-                // console.log(result.user);
-                // console.log(result.user.displayName);
-                // console.log(result.user.email);
                 saveUser(result.user.displayName, result.user.email, 'user');
                 toast.success('Google Login Success!');
-                // navigate('/');
+                navigate('/');
             })
             .catch(error => toast.error(error.message));
     };
@@ -59,7 +55,6 @@ const Signup = () => {
         })
             .then(res => res.json())
             .then(data => {
-                setCreatedUserEmail(email);
             });
     };
 

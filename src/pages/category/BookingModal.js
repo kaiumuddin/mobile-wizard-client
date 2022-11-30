@@ -40,8 +40,8 @@ const BookingModal = ({modalData, setModalData, user}) => {
                         <input type="text" name="email" placeholder="Type here" defaultValue={user?.email} disabled className="mt-2 input input-bordered w-full" />
                         <input type="text" name="productname" placeholder="Type here" defaultValue={modalData?.productname} disabled className="mt-2 input input-bordered w-full" />
                         <input type="text" name="price" placeholder="Type here" defaultValue={'Price : ' + modalData?.price} disabled className="mt-2 input input-bordered w-full" />
-                        <input type="text" name="phn" placeholder="Your Phone Number" className="mt-2 input input-bordered w-full" />
-                        <input type="text" name="location" placeholder="Meeting Location" className="mt-2 input input-bordered w-full" />
+                        <input type="text" required name="phn" placeholder="Your Phone Number" className="mt-2 input input-bordered w-full" />
+                        <input type="text" required name="location" placeholder="Meeting Location" className="mt-2 input input-bordered w-full" />
                         <button type="submit" className="btn btn-success mt-2 w-full">Submit</button>
                     </form>
                 </div>
