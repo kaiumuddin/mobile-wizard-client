@@ -4,50 +4,65 @@ const Blog = () => {
 
     return (
         <div className="container my-24 px-6 mx-auto">
-            <section className="mb-32 text-gray-800">
+            <section className="mb-32 text-gray-800 dark:text-white">
                 <div className="grid md:grid-cols-1 gap-4">
                     <div className="mb-6 md:mb-0">
                         <h2 className="text-3xl font-bold mb-6">Blogs</h2>
                     </div>
 
                     <div className="mb-6 md:mb-0">
-                        <p className="font-bold mb-4 text-xl">Difference between SQL and NoSQL</p>
-                        <div className="text-gray-500 mb-12">
+                        <p className="font-bold mb-4 text-xl">What are the different ways to manage a state in a React application?</p>
+                        <div className="text-gray-800 dark:text-white mb-12">
                             <ol className="list-decimal list-inside">
-                                <li>SQL databases are relational, NoSQL databases are non-relational.</li>
-                                <li>SQL databases use structured query language and have a predefined schema. NoSQL databases have dynamic schemas for unstructured data.</li>
-                                <li>SQL databases are vertically scalable, while NoSQL databases are horizontally scalable.</li>
-                                <li>SQL databases are table-based, while NoSQL databases are document, key-value, graph, or wide-column stores.</li>
-                                <li>SQL databases are better for multi-row transactions, while NoSQL is better for unstructured data like documents or JSON.</li>
+                                <li>Local state.</li>
+                                <li>Global state.</li>
+                                <li>Server state.</li>
+                                <li>URL state.</li>
                             </ol>
                         </div>
                     </div>
 
                     <div className="mb-6 md:mb-0">
-                        <p className="font-bold mb-4 text-xl">What is JWT, and how does it work?</p>
-                        <div className="text-gray-500 mb-12">
-                            <p>JSON Web Token (JWT) is an open standard (RFC 7519) for securely transmitting information between parties as JSON object.
+                        <p className="font-bold mb-4 text-xl">How does prototypical inheritance work?</p>
+                        <div className="text-gray-800 dark:text-white mb-12">
+                            <p>The Prototypal Inheritance is a feature in javascript used to add methods and properties in objects. It is a method by which an object can inherit the properties and methods of another object. Traditionally, in order to get and set the [[Prototype]] of an object, we use Object. getPrototypeOf and Object.</p>
 
-                                It is compact, readable and digitally signed using a private key/ or a public key pair by the Identity Provider(IdP). So the integrity and authenticity of the token can be verified by other parties involved.
-
-                                The purpose of using JWT is not to hide data but to ensure the authenticity of the data. JWT is signed and encoded, not encrypted.
-
-                                JWT is a token based stateless authentication mechanism. Since it is a client-side based stateless session, server doesn't have to completely rely on a datastore(database) to save session information.</p>
-                            <p className="mt-2">Basically the identity provider(IdP) generates a JWT certifying user identity and Resource server decodes and verifies the authenticity of the token using secret salt / public key.</p>
                         </div>
                     </div>
 
 
                     <div className="mb-6 md:mb-0">
-                        <p className="font-bold mb-4 text-xl">What is the difference between javascript and NodeJS?</p>
-                        <div className="text-gray-500 mb-12">
-                            <p>JavaScript is a simple programming language that can be used with any browser that has the JavaScript Engine installed. Node. js, on the other hand, is an interpreter or execution environment for the JavaScript programming language.</p>
+                        <p className="font-bold mb-4 text-xl">What is a unit test? Why should we write unit tests?</p>
+                        <div className="text-gray-800 dark:text-white mb-12">
+                            <p>
+                                The main objective of unit testing is to isolate written code to test and determine if it works as intended.Unit testing is an important step in the development process, because if done correctly, it can help detect early flaws in code which may be more difficult to find in later testing stages.</p>
                         </div>
                     </div>
                     <div className="mb-6 md:mb-0">
-                        <p className="font-bold mb-4 text-xl">How does NodeJS handle multiple requests at the same time?</p>
-                        <div className="text-gray-500 mb-12">
-                            <p>NodeJS receives multiple client requests and places them into EventQueue. NodeJS is built with the concept of event-driven architecture. NodeJS has its own EventLoop which is an infinite loop that receives requests and processes them.</p>
+                        <p className="font-bold mb-4 text-xl">React vs. Angular vs. Vue?</p>
+                        <div className="text-gray-800 dark:text-white mb-12">
+                            <p>React</p>
+                            <li>Component model</li>
+                            <li>Virtual DOM</li>
+                            <li>One-way data binding</li>
+                            <li>Native mobile development framework</li>
+                            <li>Big community</li>
+                        </div>
+                        <div className="text-gray-800 dark:text-white mb-12">
+                            <p>Angular</p>
+                            <li>Angular templates</li>
+                            <li>Simple implementation of two-way data binding</li>
+                            <li>Big community</li>
+                        </div>
+                        <div className="text-gray-800 dark:text-white mb-12">
+                            <p>Vue</p>
+                            <li>MVC framework</li>
+                            <li>Lightweight solution</li>
+                            <li>Virtual DOM</li>
+                            <li>Declarative templatesy</li>
+                            <li>Two-way data binding</li>
+                            <li>Pure JavaScript</li>
+                            <li>Rising popularity</li>
                         </div>
                     </div>
                 </div>
