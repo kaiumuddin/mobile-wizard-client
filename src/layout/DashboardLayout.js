@@ -1,12 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Link, Outlet} from "react-router-dom";
 import {AuthContext} from "../contexts/AuthProvider";
+import useRole from "../hooks/useRole";
 import Navbar from "../pages/shared/Navbar/Navbar";
 
 const DashboardLayout = () => {
 
     const {user} = useContext(AuthContext);
-
     const [userRole, setUserRole] = useState(null);
 
     useEffect(() => {
@@ -21,8 +21,6 @@ const DashboardLayout = () => {
                 });
         }
     }, [user?.email]);
-
-
 
     return (
         <>

@@ -45,6 +45,7 @@ const Navbar = () => {
                 {
                     user?.uid ?
                         <>
+                            <p>{user?.displayName}</p>
                             <Link className="btn" onClick={handleLogOut}>Log out</Link>
                         </>
                         :
