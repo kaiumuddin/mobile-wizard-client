@@ -23,6 +23,8 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 toast('Login Success');
+                navigate(from, {replace: true});
+
             })
             .catch(error => {
                 console.log(error.message);
@@ -37,14 +39,15 @@ const Login = () => {
                 toast.success('Google Login Success!');
                 saveUser(result.user.displayName, result.user.email, 'buyer');
                 toast.success('Google Login Success!');
-                navigate('/');
+                navigate(from, {replace: true});
+
             })
             .catch(error => toast.error(error.message));
     };
 
     const saveUser = (name, email, role) => {
         const user = {name, email, role};
-        fetch('http://localhost:5000/users', {
+        fetch('https://mobile-wizard-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -15,7 +15,7 @@ const AddProduct = () => {
 
     useEffect(() => {
         if (user?.email) {
-            const url = `http://localhost:5000/users/${user?.email}`;
+            const url = `https://mobile-wizard-server.vercel.app/users/${user?.email}`;
             console.log(url);
             fetch(url)
                 .then(res => res.json())
@@ -41,7 +41,7 @@ const AddProduct = () => {
         data.advertised = false;
         console.log(data);
 
-        fetch('http://localhost:5000/products', {
+        fetch('https://mobile-wizard-server.vercel.app/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -73,7 +73,7 @@ const AddProduct = () => {
                         <input type="text"
                             className="input input-bordered w-full"
                             {...register("productname", {
-                                required: "product name is required",
+                                required: "Product name is required",
 
                             })} />
                         {errors.name && <p role="alert" className="text-error">{errors.name?.message}</p>}
@@ -81,12 +81,25 @@ const AddProduct = () => {
 
                     <div className="form-control w-full ">
                         <label className="label">
-                            <span className="label-text">Price</span>
+                            <span className="label-text">Original Price</span>
                         </label>
-                        <input type="price"
+                        <input type="text"
                             className="input input-bordered w-full "
-                            {...register("price", {
-                                required: "Price is required",
+                            {...register("originalprice", {
+                                required: "Original price is required",
+
+                            })} />
+                        {errors.price && <p role="alert" className="text-error">{errors.price?.message}</p>}
+                    </div>
+
+                    <div className="form-control w-full ">
+                        <label className="label">
+                            <span className="label-text">Resale Price</span>
+                        </label>
+                        <input type="resaleprice"
+                            className="input input-bordered w-full "
+                            {...register("resaleprice", {
+                                required: "Resale price is required",
 
                             })} />
                         {errors.price && <p role="alert" className="text-error">{errors.price?.message}</p>}

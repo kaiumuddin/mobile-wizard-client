@@ -1,13 +1,14 @@
 import {useQuery} from "@tanstack/react-query";
 import React from 'react';
 import toast from "react-hot-toast";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const Allsellers = () => {
 
-    const {data: seller = [], refetch} = useQuery({
+    const {data: seller = [], isLoading, refetch} = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/role/seller');
+            const res = await fetch('https://mobile-wizard-server.vercel.app/users/role/seller');
             const data = await res.json();
             return data;
         }
@@ -15,7 +16,7 @@ const Allsellers = () => {
 
 
     const handleDelete = (user) => {
-        fetch(`http://localhost:5000/users/${user._id}`, {
+        fetch(`https://mobile-wizard-server.vercel.app/users/${user._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -28,6 +29,10 @@ const Allsellers = () => {
 
 
     };
+
+    if (isLoading) {
+        return <LoadingSpinner></LoadingSpinner>;
+    }
 
 
     return (

@@ -41,14 +41,14 @@ const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <PrivateRoute> <Category></Category></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
+                loader: ({params}) => fetch(`https://mobile-wizard-server.vercel.app/category/${params.id}`)
             },
 
         ]
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         errorElement: <ErrorPage></ErrorPage>,
         children: [
             {

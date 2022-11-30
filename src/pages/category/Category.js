@@ -22,7 +22,8 @@ const Category = () => {
                                 <p>{phn.description}</p>
                                 <p>Condition : {phn.condition}</p>
                                 <p>Seller Mobile : {phn.mobile}</p>
-                                <p>Price : ${phn.price}</p>
+                                <p>Original Price : ${phn.originalprice}</p>
+                                <p>Resale Price : ${phn.resaleprice}</p>
                                 <p>Purchase Year : {phn.purchaseyear}</p>
                                 <p>Seller Name : {phn.sellername}</p>
                                 <div className="card-actions justify-end">

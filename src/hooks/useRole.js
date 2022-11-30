@@ -8,7 +8,7 @@ const useRole = (email) => {
 
     useEffect(() => {
         if (user?.email) {
-            const url = `http://localhost:5000/users/${user?.email}`;
+            const url = `https://mobile-wizard-server.vercel.app/users/${user?.email}`;
             console.log(url);
             fetch(url)
                 .then(res => res.json())

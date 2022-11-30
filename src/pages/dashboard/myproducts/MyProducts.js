@@ -1,6 +1,7 @@
 import {useQuery} from "@tanstack/react-query";
 import React, {useContext, useEffect, useState} from 'react';
 import toast from "react-hot-toast";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 import {AuthContext} from "../../../contexts/AuthProvider";
 
 const MyProducts = () => {
@@ -8,17 +9,17 @@ const MyProducts = () => {
     const {user} = useContext(AuthContext);
 
 
-    const {data: myproducts = [], refetch} = useQuery({
+    const {data: myproducts = [], isLoading, refetch} = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products/${user?.email}`);
+            const res = await fetch(`https://mobile-wizard-server.vercel.app/products/${user?.email}`);
             const data = await res.json();
             return data;
         }
     });
 
     const handleDelete = (product) => {
-        fetch(`http://localhost:5000/products/${product._id}`, {
+        fetch(`https://mobile-wizard-server.vercel.app/products/${product._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -33,7 +34,7 @@ const MyProducts = () => {
     };
 
     const handleAdvertise = (product) => {
-        fetch(`http://localhost:5000/products/${product._id}`, {
+        fetch(`https://mobile-wizard-server.vercel.app/products/${product._id}`, {
             method: 'PUT'
         })
             .then(res => res.json())
@@ -47,6 +48,9 @@ const MyProducts = () => {
 
     };
 
+    if (isLoading) {
+        return <LoadingSpinner></LoadingSpinner>;
+    }
 
     return (
         <div>

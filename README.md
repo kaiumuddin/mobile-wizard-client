@@ -25,7 +25,7 @@
 
 ## Live Link
 
-<https://vacarion.web.app/>
+<https://mobile-wizard-818d2.web.app/>
 
 * adminEmail : admin@gmail.com
 * adminPassword : asdasd

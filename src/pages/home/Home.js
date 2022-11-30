@@ -11,7 +11,7 @@ const Home = () => {
     const {data: items = [], refetch} = useQuery({
         queryKey: ['advertised'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/advertised`);
+            const res = await fetch(`https://mobile-wizard-server.vercel.app/advertised`);
             const data = await res.json();
             return data;
         }

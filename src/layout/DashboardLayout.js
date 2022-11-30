@@ -11,7 +11,7 @@ const DashboardLayout = () => {
 
     useEffect(() => {
         if (user?.email) {
-            const url = `http://localhost:5000/users/${user?.email}`;
+            const url = `https://mobile-wizard-server.vercel.app/users/${user?.email}`;
             console.log(url);
             fetch(url)
                 .then(res => res.json())
@@ -29,9 +29,9 @@ const DashboardLayout = () => {
                 <input id="side-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col p-5">
 
+                    <label htmlFor="side-drawer" className="btn btn-primary drawer-button lg:hidden mb-10">Open Sidebar</label>
                     <Outlet></Outlet>
 
-                    <label htmlFor="side-drawer" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
                 </div>
                 <div className="drawer-side">
