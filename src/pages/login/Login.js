@@ -7,9 +7,8 @@ import {AuthContext} from "../../contexts/AuthProvider";
 const Login = () => {
 
     const {register, formState: {errors}, handleSubmit} = useForm();
-    const {signIn} = useContext(AuthContext);
+    const {signIn, signInWithGoogle} = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
-    const [loginUserEmail, setLoginUserEmail] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -23,12 +22,36 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                setLoginUserEmail(data.email);
                 toast('Login Success');
             })
             .catch(error => {
                 console.log(error.message);
                 setLoginError(error.message);
+            });
+    };
+
+    // Google Sign In 
+    const handleSigninWithGoogle = () => {
+        signInWithGoogle()
+            .then((result) => {
+                toast.success('Google Login Success!');
+                saveUser(result.user.displayName, result.user.email, 'user');
+                navigate('/');
+            })
+            .catch(error => toast.error(error.message));
+    };
+
+    const saveUser = (name, email, role) => {
+        const user = {name, email, role};
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
             });
     };
 
@@ -70,6 +93,7 @@ const Login = () => {
                     <input className="btn btn-accent w-full" value="Login" type="submit" />
                 </form>
                 <p >New to Mobile Wizard? <Link to="/signup" className="text-secondary">Create new account</Link> </p>
+                <button onClick={handleSigninWithGoogle} className="uppercase btn btn-outline w-full">Continue with google</button>
             </div>
         </div>
     );

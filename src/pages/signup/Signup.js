@@ -24,12 +24,14 @@ const Signup = () => {
                 updateUser(userInfo)
                     .then(() => {
                         saveUser(data.name, data.email, data.role);
+                        navigate('/');
                     })
                     .catch(err => console.log(err));
             })
             .catch(error => {
-                console.log(error);
                 setSignUPError(error.message);
+                toast.success(signUpError);
+
             });
     };
 
@@ -41,7 +43,10 @@ const Signup = () => {
                 toast.success('Google Login Success!');
                 navigate('/');
             })
-            .catch(error => toast.error(error.message));
+            .catch((error) => {
+                setSignUPError(error.message);
+                toast.success(signUpError);
+            });
     };
 
     const saveUser = (name, email, role) => {
