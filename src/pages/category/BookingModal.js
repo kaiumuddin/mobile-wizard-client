@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import toast from "react-hot-toast";
 import {AuthContext} from "../../contexts/AuthProvider";
 
 const BookingModal = ({modalData, setModalData, user}) => {
@@ -20,7 +21,7 @@ const BookingModal = ({modalData, setModalData, user}) => {
             productid, buyername, buyeremail, productname, price, phn, location
         };
 
-        console.log(bookedData);
+        toast.success("Item is Booked");
 
         setModalData(null);
     };
